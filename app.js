@@ -14,13 +14,16 @@ app.use(bodyParser.json())
 const knex = require('./connection')
 
 app.post('/login', (req, res, next) => {
+  debugger
   knex('users')
     .where('name', req.body.name)
     .first()
     .then(user => {
+      debugger
       res.json({user})
     })
     .catch(err => {
+      debugger
       next(err)
     })
 })
