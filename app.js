@@ -42,6 +42,19 @@ app.post('/signup', (req, res, next) => {
     })
 })
 
+app.get('/users/:id/readinglist', (req, res, next) => {
+  debugger
+  knex('readinglist')
+    .where('users_id', req.params.id)
+    .then(readingList => {
+      res.json(readingList)
+    })
+    .catch(err => {
+      console.log(err)
+      res.json({err})
+    })
+})
+
 app.post('/readinglist', (req, res, next) => {
   console.log(req.body)
   knex('readinglist')
